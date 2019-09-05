@@ -1,0 +1,44 @@
+<!-- <div class="container my-4">
+  <h2 class="my-5 h2">All Posts :</h2>
+  <div class="card-columns text-black">
+    <div class="card mt-2 mb-3" *ngFor="let post of postData">
+      <div class="card-body">
+        <h5 class="card-title">{{post.title}}</h5>
+        <img class="card-img-top" src={{post.imgSrc}} alt="Card image">
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+<section id="team" class="pb-5">
+        <div class="container">
+            <h5 class="section-title h1">POSTS</h5>
+            <div class="row">
+<div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let post of postData">
+        <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+            <div class="mainflip">
+                <div class="frontside">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <p><img class=" img-fluid" src={{post.imgSrc}} alt="card image"></p>
+                            <h4 class="card-title">{{post.title}}</h4>
+                            <p class="card-text">{{post.description}}</p>
+                            <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="backside">
+                    <div class="card">
+                        <div class="card-body text-center mt-4">
+                            <h4 class="card-title">Sunlimetech</h4>
+                            <p class="card-text">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</section>

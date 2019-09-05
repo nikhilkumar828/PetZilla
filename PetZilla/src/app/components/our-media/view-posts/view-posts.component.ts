@@ -1,0 +1,23 @@
+import { Component, OnInit } from '@angular/core';
+import { PostsService } from '../posts.service';
+
+import { Post } from 'src/app/model/our-media-posts';
+
+@Component({
+  selector: 'app-view-posts',
+  templateUrl: './view-posts.component.html',
+  styleUrls: ['./view-posts.component.css']
+})
+export class ViewPostsComponent implements OnInit {
+
+  postData: Post[];
+  constructor(private postService: PostsService) { }
+
+  ngOnInit() {
+    this.postService.getAllLists().subscribe( data => {
+      console.log(data);
+      this.postData = data;
+    });
+  }
+
+}
