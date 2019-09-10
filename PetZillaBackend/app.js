@@ -4,17 +4,31 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
-
+//Posts
 const bucketlist = require('./controllers/ourMediaPosts');
+
+
+
+// var favicon = require('serve-favicon');
+// var logger = require('morgan');
+// var cookieParser = require('cookie-parser');
+// [SH] Require Passport
+var passport = require('passport');
+
+// [SH] Bring in the data model
+require('./models/users');
 
 // Connect mongoose to our database
 const config = require('./config/database');
+// [SH] Bring in the Passport config after model is defined
+const configAuth = require('./config/passport');
 
 //Initialize our app variable
 const app = express();
 
 //Connect mongoose to our database
 mongoose.connect(config.database);
+mongoose.connect(configAuth.database);
 
 
 //Declaring Port
@@ -36,6 +50,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Routing all HTTP requests to /bucketlist to bucketlist controller
 app.use('/ourmedia',bucketlist);
 
+//Login
+var routesApi = require('./routes/authRoutes');
+app.use('/auth', routesApi);
+
 app.get('/', (req,res) => {
     res.send("Invalid page");
 })
@@ -44,3 +62,4 @@ app.get('/', (req,res) => {
 app.listen(port, () => {
     console.log(`Starting the server at port ${port}`);
 });
+
