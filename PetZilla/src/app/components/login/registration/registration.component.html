@@ -1,3 +1,6 @@
+<ul class="nav navbar-nav navbar-right">
+  <li *ngIf="!auth.isLoggedIn()"><a routerLink="/login">Sign in</a></li>
+</ul>
 <form (submit)="register()">
     <div class="form-group">
       <label for="name">Full name</label>

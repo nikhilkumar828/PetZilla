@@ -1,3 +1,8 @@
+<!-- <ul class="nav navbar-nav navbar-right">
+  <li *ngIf="!auth.isLoggedIn()"><a routerLink="/register">Sign up</a></li>
+  <li *ngIf="auth.isLoggedIn()"><a routerLink="/profile">{{ auth.getUserDetails()?.name }}</a></li>
+  <li *ngIf="auth.isLoggedIn()"><a (click)="auth.logout()">Logout</a></li>
+</ul>
 <form (submit)="login()">
     <div class="form-group">
       <label for="email">Email address</label>
@@ -8,4 +13,35 @@
       <input type="password" class="form-control" name="password" placeholder="Password" [(ngModel)]="credentials.password">
     </div>
     <button type="submit" class="btn btn-default">Sign in!</button>
-  </form>
+  </form> -->
+
+
+  <div class=" jumbotron container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h3>LogIn</h3>
+            <form name="form" (ngSubmit)="f.form.valid && onLogin()" #f="ngForm" novalidate>
+                <div class="form-group">
+                    <label for="userName">Email ID</label>
+                    <input type="text" class="form-control" name="userName" [(ngModel)]="credentials.email" #firstName="ngModel" [ngClass]="{ 'is-invalid': f.submitted && firstName.invalid }" required email/>
+                    <div *ngIf="f.submitted && firstName.invalid" class="invalid-feedback">
+                        <div *ngIf="firstName.errors.required">Email ID is required</div>
+                        <div *ngIf="firstName.errors.email">Email ID is expected</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" name="password" [(ngModel)]="credentials.password" #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required minlength="6" />
+                    <div *ngIf="f.submitted && password.invalid" class="invalid-feedback">
+                        <div *ngIf="password.errors.required">Password is required</div>
+                        <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" >SignIn</button>
+                </div>
+            </form>
+            <p>Not Registered? <button class="btn btn-dark" (click)='signUp()'>SignUp!</button></p>
+        </div>
+    </div>
+</div>
