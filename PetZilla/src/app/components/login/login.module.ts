@@ -13,6 +13,8 @@ import { MatCardModule } from '@angular/material/card';
 @NgModule({
   declarations: [RegistrationComponent, LoginComponent, ProfileComponent],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     CommonModule,
     LoginRoutingModule,
     FormsModule,
