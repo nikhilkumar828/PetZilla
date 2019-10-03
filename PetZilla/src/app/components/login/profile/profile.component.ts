@@ -10,7 +10,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(private auth: AuthenticationService) {}
 
-  ngOnInit() {    
+  ngOnInit() {
     this.auth.profile().subscribe(user => {
       this.details = user;
     }, (err) => {
