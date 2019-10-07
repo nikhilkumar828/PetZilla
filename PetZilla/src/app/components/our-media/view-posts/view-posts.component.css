@@ -1,24 +1,5 @@
-/*   
-.img {
-    width: 100%;
-    margin-bottom: 18%;
-  }
-  .card-picture {
-    width: 23%;
-    margin-bottom: 2%;
-  }
-  .container {
-    min-height: 100%;
-    width: 100%;
-  }
-  .search-form {
-    width: 90%;
-  } */
-
-
-
-  /* FontAwesome for working BootSnippet :> */
-
+/* FontAwesome for working BootSnippet :> */
+/* 
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 #team {
     background: #eee !important;
@@ -145,4 +126,11 @@ section .section-title {
     width: 120px;
     height: 120px;
     border-radius: 50%;
+} */
+
+
+/* card */
+
+.width {
+    width: 25%;
 }

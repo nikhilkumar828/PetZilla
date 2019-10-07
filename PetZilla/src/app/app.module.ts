@@ -9,6 +9,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { OurMediaModule } from './components/our-media/our-media.module';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import {MatCardModule} from '@angular/material/card';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -22,7 +24,8 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    OurMediaModule
+    OurMediaModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
