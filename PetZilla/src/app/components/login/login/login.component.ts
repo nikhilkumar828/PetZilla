@@ -14,15 +14,15 @@ export class LoginComponent implements OnInit {
   };
 
   model: any = {};
-  
-  constructor(private auth: AuthenticationService, private router: Router ,private formBuilder: FormBuilder ) {}
+
+  constructor(private auth: AuthenticationService, private router: Router , private formBuilder: FormBuilder ) {}
 
   ngOnInit() {
   }
 
   login() {
     this.auth.login(this.credentials).subscribe(() => {
-      this.router.navigateByUrl('/dashboard');
+      this.router.navigateByUrl('/ourmedia');
     }, (err) => {
       alert(err.error.message);
       console.error(err);

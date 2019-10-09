@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PostsService } from '../posts.service';
 
 import { Post } from 'src/app/model/our-media-posts';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-view-posts',
@@ -11,7 +12,7 @@ import { Post } from 'src/app/model/our-media-posts';
 export class ViewPostsComponent implements OnInit {
 
   postData: Post[];
-  constructor(private postService: PostsService) { }
+  constructor(private postService: PostsService , public auth: AuthenticationService) { }
 
   ngOnInit() {
     this.postService.getAllLists().subscribe( data => {
