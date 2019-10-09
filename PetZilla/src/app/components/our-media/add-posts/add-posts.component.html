@@ -1,1 +1,25 @@
-<p>add-posts works!</p>
+<form [formGroup]="postForm" (ngSubmit)="onSubmit()" class="form-group mt-10 container">
+
+        <label>
+          Heading:
+        </label>
+          <input type="text" formControlName="title" class="form-control">
+        
+        <br>
+        <label>
+          Content:
+        </label>
+          <input type="text" formControlName="description" class="form-control">
+          <br>
+<img *ngIf='imageSrc'
+        [src]="imageSrc" class="img"/>
+        <br><br>
+        <input class="form-control" type="file" name="file" accept="image/*"
+        (change)="handleInputChange($event)">
+        <br><br>  
+      
+        <button type="submit" [disabled]="!postForm.valid" class="btn">Submit</button> 
+        | 
+        <button (click)="onCancel()" class="btn">Cancel</button>
+      
+      </form>

@@ -32,4 +32,12 @@ export class PostsService {
       return this.http.delete(URI , {headers} ).subscribe(res => console.log(JSON.stringify(res)));
   }
 
+  public addPost(post: object) {
+    const URI = `${this.serverApi}/ourmedia/`;
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+    console.log(post);
+    return this.http.post(URI , {headers} , post ).subscribe(res => console.log(JSON.stringify(res)));
+}
+
 }
