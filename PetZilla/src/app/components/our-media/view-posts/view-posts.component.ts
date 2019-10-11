@@ -12,6 +12,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class ViewPostsComponent implements OnInit {
 
   postData: Post[];
+  isLiked = false;
   constructor(private postService: PostsService , public auth: AuthenticationService) { }
 
   ngOnInit() {
@@ -19,6 +20,11 @@ export class ViewPostsComponent implements OnInit {
       console.log(data);
       this.postData = data;
     });
+  }
+
+  likePost(postId: string , value: boolean) {
+    console.log(value);
+    this.postService.likePost(postId, value);
   }
 
 }

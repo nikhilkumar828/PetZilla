@@ -5,12 +5,13 @@ export interface UserDetails {
     exp: number;
     iat: number;
   }
-  
- export interface TokenResponse {
+
+export interface TokenResponse {
     token: string;
+    name: string;
   }
-  
-  export interface TokenPayload {
+
+export interface TokenPayload {
     email: string;
     password: string;
     name?: string;

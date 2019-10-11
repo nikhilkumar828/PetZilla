@@ -11,6 +11,14 @@ const PostlistSchema = mongoose.Schema({
     description: String,
     imgSrc: {
         type: String
+    },
+    author: {
+        type: String,
+        require: true
+    },
+    likes: { 
+        type: Number,
+        default: 0
     }
 });
 
@@ -35,3 +43,14 @@ module.exports.deleteListById = (id, callback) => {
 	PostList.remove(query, callback);
 }
 
+//We pass on an id and remove it from DB using Bucketlist.remove()
+module.exports.likePostById = (id, callback) => {
+	let query = {_id: id};
+	PostList.findByIdAndUpdate(query, { $inc: { likes: 1 } }, callback);
+}
+
+//We pass on an id and remove it from DB using Bucketlist.remove()
+module.exports.disLikePostById = (id, callback) => {
+	let query = {_id: id};
+	PostList.findByIdAndUpdate(query, { $inc: { likes: -1 } }, callback);
+}

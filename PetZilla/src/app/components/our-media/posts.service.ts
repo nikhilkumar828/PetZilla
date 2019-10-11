@@ -32,12 +32,24 @@ export class PostsService {
       return this.http.delete(URI , {headers} ).subscribe(res => console.log(JSON.stringify(res)));
   }
 
-  public addPost(post: object) {
-    const URI = `${this.serverApi}/ourmedia/`;
-    let headers = new HttpHeaders();
-    headers = headers.set('Content-Type', 'application/json; charset=utf-8');
-    console.log(post);
-    return this.http.post(URI , {headers} , post ).subscribe(res => console.log(JSON.stringify(res)));
+  public addPost(post: any) {
+        const URI = `${this.serverApi}/ourmedia/`;
+        const headers = new HttpHeaders();
+        const body = {title: post.title, description: post.description, src: post.imgSrc , author: localStorage.getItem('userName')};
+        console.log(body);
+        headers.append('Content-Type', 'application/json');
+        return this.http.post(URI, body , {headers})
+        .subscribe(res => console.log(JSON.stringify(res)));
+}
+
+public likePost(postId: string, val: boolean) {
+  const URI = `${this.serverApi}/ourmedia/like/${postId}`;
+  let headers = new HttpHeaders();
+  headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+  const body = {value : val};
+  console.log(body);
+  return this.http.put(URI, body , {headers})
+  .subscribe(res => console.log(JSON.stringify(res)));
 }
 
 }

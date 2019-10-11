@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormControl, FormGroup } from '@angular/forms';
 import { PostsService } from '../posts.service';
+import { RouterLink, Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-posts',
@@ -16,7 +17,7 @@ export class AddPostsComponent implements OnInit {
 
   imageSrc = '';
   loaded = false;
-  constructor(private postService: PostsService) { }
+  constructor(private postService: PostsService , private router: Router) { }
 
   ngOnInit() {
   }
@@ -38,10 +39,8 @@ export class AddPostsComponent implements OnInit {
 }
 
 _handleReaderLoaded(e) {
-    console.log('_handleReaderLoaded');
     const reader = e.target;
     this.imageSrc = reader.result;
-
     this.loaded = true;
 }
 
@@ -53,10 +52,11 @@ onSubmit() {
     imgSrc : this.imageSrc
   };
   this.postService.addPost(post);
+  this.router.navigate(['ourmedia']);
 }
 
 onCancel() {
-  // this.router.navigate(['body', 'cnn']);
+  this.router.navigate(['ourmedia']);
 }
 
 }

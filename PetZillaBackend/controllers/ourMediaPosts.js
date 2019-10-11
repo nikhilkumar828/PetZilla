@@ -24,8 +24,10 @@ router.post('/', (req,res,next) => {
     let newPost = new postlist({
         title: req.body.title,
         description: req.body.description,
-        imgSrc: req.body.src
+        imgSrc: req.body.src,
+        author: req.body.author
     });
+    console.log(req.body);
     postlist.addList(newPost,(err, list) => {
         if(err) {
             res.json({success: false, message: `Failed to create a new list. Error: ${err}`});
@@ -54,5 +56,39 @@ router.delete('/:id', (req,res,next)=> {
             res.json({success:false});
     })
 });
+
+router.put('/like/:id', (req,res,next)=> {
+    //access the parameter which is the id of the item to be deleted
+      let id = req.params.id;
+      let boolean = req.body.value;
+    //Call the model method deleteListById
+    if(boolean){
+        postlist.likePostById(id,(err,list) => {
+            if(err) {
+                res.json({success:false, message: `Failed to like the post. Error: ${err}`});
+            }
+            else if(list) {
+                res.json({success:true, message: "Liked successfully"});
+            }
+            else
+                res.json({success:false});
+        })
+
+    }
+    else {
+        postlist.disLikePostById(id,(err,list) => {
+            if(err) {
+                res.json({success:false, message: `Failed to dislike the post. Error: ${err}`});
+            }
+            else if(list) {
+                res.json({success:true, message: "Disliked successfully"});
+            }
+            else
+                res.json({success:false});
+        })
+
+    }
+    
+  });
 
 module.exports = router;

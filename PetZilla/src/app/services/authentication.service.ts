@@ -13,9 +13,10 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  private saveToken(token: string): void {
-    localStorage.setItem('mean-token', token);
-    this.token = token;
+  private saveToken(data: TokenResponse): void {
+    localStorage.setItem('mean-token', data.token);
+    localStorage.setItem('userName', data.name);
+    this.token = data.token;
   }
 
   private getToken(): string {
@@ -63,8 +64,8 @@ export class AuthenticationService {
 
     const request = base.pipe(
       map((data: TokenResponse) => {
-        if (data.token) {
-          this.saveToken(data.token);
+        if (data.token && data.name) {
+          this.saveToken(data);
         }
         return data;
       })
