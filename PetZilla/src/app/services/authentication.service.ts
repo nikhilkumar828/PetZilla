@@ -15,7 +15,7 @@ export class AuthenticationService {
 
   private saveToken(data: TokenResponse): void {
     localStorage.setItem('mean-token', data.token);
-    localStorage.setItem('userName', data.name);
+    localStorage.setItem('user', JSON.stringify(data.user));
     this.token = data.token;
   }
 
@@ -29,6 +29,7 @@ export class AuthenticationService {
   public logout(): void {
     this.token = '';
     window.localStorage.removeItem('mean-token');
+    window.localStorage.removeItem('user');
     this.router.navigateByUrl('/');
   }
 
@@ -64,7 +65,7 @@ export class AuthenticationService {
 
     const request = base.pipe(
       map((data: TokenResponse) => {
-        if (data.token && data.name) {
+        if (data) {
           this.saveToken(data);
         }
         return data;

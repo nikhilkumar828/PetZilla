@@ -32,15 +32,15 @@
 
 <div class="container">
     <div class=" row">
-        <div  *ngFor="let post of postData" class="card width margin">
+        <div  *ngFor="let post of postData;let i = index" class="card width margin">
                 <div class="card-header">
                         {{post.author}}
                 </div>
                 <img [src]=post.imgSrc class="card-img-top" alt="...">
                 <div class="card-body">
                   <p class="card-text">{{post.description}}</p>
-                  <span *ngIf="isLiked else notLiked"><i (click)="likePost(post._id,false)" class="fa fa-heart"></i></span>
-                  <ng-template #notLiked><i (click)="likePost(post._id,true)" class="fa fa-heart-o"></i></ng-template>
+                  <span *ngIf="post.likedByMe else notLiked"><i (click)="likePost(post._id,false,i)" class="fa fa-heart"></i></span>
+                  <ng-template #notLiked><i (click)="likePost(post._id,true,i)" class="fa fa-heart-o"></i></ng-template>
                   <span class="card-text ml-2"><small class="text-muted">{{post.likes}}  likes</small></span>
                 </div>
         </div>

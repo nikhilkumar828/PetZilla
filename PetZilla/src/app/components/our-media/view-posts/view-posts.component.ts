@@ -22,8 +22,15 @@ export class ViewPostsComponent implements OnInit {
     });
   }
 
-  likePost(postId: string , value: boolean) {
+  likePost(postId: string , value: boolean, index: number) {
     console.log(value);
+    if(value){
+    this.postData[index].likedByMe = true;
+    this.postData[index].likes++;
+    } else {
+      this.postData[index].likedByMe = false;
+      this.postData[index].likes--;    
+    }
     this.postService.likePost(postId, value);
   }
 

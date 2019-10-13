@@ -61,9 +61,10 @@ router.put('/like/:id', (req,res,next)=> {
     //access the parameter which is the id of the item to be deleted
       let id = req.params.id;
       let boolean = req.body.value;
+      const userId = req.body.userId;
     //Call the model method deleteListById
     if(boolean){
-        postlist.likePostById(id,(err,list) => {
+        postlist.likePostById(id,userId,(err,list) => {
             if(err) {
                 res.json({success:false, message: `Failed to like the post. Error: ${err}`});
             }
@@ -76,7 +77,7 @@ router.put('/like/:id', (req,res,next)=> {
 
     }
     else {
-        postlist.disLikePostById(id,(err,list) => {
+        postlist.disLikePostById(id,userId,(err,list) => {
             if(err) {
                 res.json({success:false, message: `Failed to dislike the post. Error: ${err}`});
             }

@@ -9,7 +9,8 @@ const routes: Routes = [
   },
   {
     path: '',
-    loadChildren: './components/dashboard/dashboard.module#DashboardModule'
+    redirectTo: 'ourmedia',
+    pathMatch: 'full'
   },
   {
     path: 'dashboard',

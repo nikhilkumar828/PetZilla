@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ViewPostsComponent } from './view-posts/view-posts.component';
 import { AddPostsComponent } from './add-posts/add-posts.component';
+import { AuthGuardService } from 'src/app/guards/auth-guard.service';
 
 
 const routes: Routes = [
   { path: '', component: ViewPostsComponent },
-  { path: 'addPost', component: AddPostsComponent }
+  { path: 'addPost', component: AddPostsComponent, canActivate: [AuthGuardService] }
 ];
 
 @NgModule({

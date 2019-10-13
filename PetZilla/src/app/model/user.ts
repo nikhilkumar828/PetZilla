@@ -8,7 +8,7 @@ export interface UserDetails {
 
 export interface TokenResponse {
     token: string;
-    name: string;
+    user : object
   }
 
 export interface TokenPayload {
