@@ -40,6 +40,7 @@ app.use(cors());
 //Middleware for bodyparsing using both json and urlencoding
 app.use(bodyParser.urlencoded({limit: '50mb',extended:true}));
 app.use(bodyParser.json({limit: '50mb', extended: true}));
+app.use("/images", express.static(path.join("images")));
 
 /*express.static is a built in middleware function to serve static files.
  We are telling express server public folder is the place to look for the static files

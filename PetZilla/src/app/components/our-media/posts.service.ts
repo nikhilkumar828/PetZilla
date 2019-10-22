@@ -15,27 +15,32 @@ export class PostsService {
 
   private serverApi = 'http://localhost:3000';
 
-  public getAllLists(): Observable<Post[]> {
+  public getAllLists(postsPerPage: number, currentPage: number): Observable<{posts: Post[] , totalPosts: number}> {
 
     const URI = `${this.serverApi}/ourmedia/`;
-    return this.http.get(URI)
+    const queryParams = `?pagesize=${postsPerPage}&page=${currentPage}`;
+    return this.http.get<{ message: string; lists: any; maxPosts: number }>(URI + queryParams)
       .pipe(
         // tslint:disable-next-line: no-string-literal no-angle-bracket-type-assertion
         map(res => {
-         return <Post[]>res['lists'].map(data => {
+         return {
+           // tslint:disable-next-line: no-string-literal no-angle-bracket-type-assertion
+          posts: res.lists.map(data => {
           return {
             ...data,
             likedByMe: this.isLikedByMe(data.likedUserIDs)
-          }
-         })
+          };
+         }),
+         totalPosts: res.maxPosts
+        };
         })
       );
   }
 
   public isLikedByMe(ids) {
-    if(!localStorage.getItem('user')){
+    if (!localStorage.getItem('user')) {
       return false;
-    }else {
+    } else {
     const presentUser = JSON.parse(localStorage.getItem('user')).id;
     return ids.includes(presentUser);
     }
@@ -49,21 +54,27 @@ export class PostsService {
     return this.http.delete(URI, { headers }).subscribe(res => console.log(JSON.stringify(res)));
   }
 
-  public addPost(post: any) {
+  public addPost(post: Post) {
     const URI = `${this.serverApi}/ourmedia/`;
     const headers = new HttpHeaders();
+    const postData = new FormData();
     const userName = JSON.parse(localStorage.getItem('user')).name;
-    const body = { title: post.title, description: post.description, src: post.imgSrc, author: userName };
-    console.log(body);
-    headers.append('Content-Type', 'application/json');
-    return this.http.post(URI, body, { headers })
+    // const body = { title: post.title, description: post.description, src: post.imgSrc, author: userName };
+    // console.log(body);
+    postData.append('title', post.title);
+    postData.append('description', post.description);
+    postData.append('author', userName );
+    postData.append('image', post.image , post.title);
+    // headers.append('Content-Type', 'application/json');
+    console.log(postData);
+    return this.http.post(URI, postData)
       .subscribe(res => console.log(JSON.stringify(res)));
   }
 
   public likePost(postId: string, val: boolean) {
-    if(!this.auth.isLoggedIn()){
+    if (!this.auth.isLoggedIn()) {
       alert('Login to like!');
-    }else {
+    } else {
     const URI = `${this.serverApi}/ourmedia/like/${postId}`;
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');

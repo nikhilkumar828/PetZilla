@@ -11,8 +11,10 @@ import { RouterLink, Router } from '@angular/router';
 export class AddPostsComponent implements OnInit {
 
   postForm = new FormGroup({
-    title: new FormControl('', Validators.required),
     description: new FormControl('', [Validators.required , Validators.maxLength(50)]),
+    image: new FormControl(null, {
+      validators: [Validators.required],
+    })
   });
 
   imageSrc = '';
@@ -24,8 +26,9 @@ export class AddPostsComponent implements OnInit {
 
   handleInputChange(e) {
     console.log('input change');
-    const file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
-
+    const file = (e.target as HTMLInputElement).files[0];
+    this.postForm.patchValue({ image: file });
+    this.postForm.get('image').updateValueAndValidity();
     const pattern = /image-*/;
     const reader = new FileReader();
 
@@ -47,10 +50,10 @@ _handleReaderLoaded(e) {
 onSubmit() {
 
   const post = {
-    title : this.postForm.value.title,
     description : this.postForm.value.description,
-    imgSrc : this.imageSrc
+    image : this.postForm.value.image
   };
+  console.log(post);
   this.postService.addPost(post);
   this.router.navigate(['ourmedia']);
 }

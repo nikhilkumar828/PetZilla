@@ -1,8 +1,8 @@
 export interface Post {
     _id?: string;
-    title: string;
+    title?: string;
     description: string;
-    imageSrc: string;
-    likedByMe: boolean;
-    likes: number;
+    image: File;
+    likedByMe?: boolean;
+    likes?: number;
 }

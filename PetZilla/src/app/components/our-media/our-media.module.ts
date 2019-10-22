@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import {MatCardModule} from '@angular/material/card';
+import {MatPaginatorModule} from '@angular/material';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import {MatCardModule} from '@angular/material/card';
     HttpClientModule,
     CommonModule,
     MatCardModule,
+    MatPaginatorModule,
     OurMediaRoutingModule
   ]
 })

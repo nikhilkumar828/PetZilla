@@ -31,21 +31,25 @@
 </section> -->
 
 <div class="container">
-    <div class=" row">
-        <div  *ngFor="let post of postData;let i = index" class="card width margin">
-                <div class="card-header">
-                        {{post.author}}
-                </div>
-                <img [src]=post.imgSrc class="card-img-top" alt="...">
-                <div class="card-body">
-                  <p class="card-text">{{post.description}}</p>
-                  <span *ngIf="post.likedByMe else notLiked"><i (click)="likePost(post._id,false,i)" class="fa fa-heart"></i></span>
-                  <ng-template #notLiked><i (click)="likePost(post._id,true,i)" class="fa fa-heart-o"></i></ng-template>
-                  <span class="card-text ml-2"><small class="text-muted">{{post.likes}}  likes</small></span>
-                </div>
-        </div>
+  <div class=" row">
+    <div *ngFor="let post of postData;let i = index" class="card width margin">
+      <div class="card-header">
+        {{post.author}}
+      </div>
+      <img [src]=post.imgSrc class="card-img-top" alt="...">
+      <div class="card-body">
+        <p class="card-text">{{post.description}}</p>
+        <span *ngIf="post.likedByMe else notLiked"><i (click)="likePost(post._id,false,i)"
+            class="fa fa-heart"></i></span>
+        <ng-template #notLiked><i (click)="likePost(post._id,true,i)" class="fa fa-heart-o"></i></ng-template>
+        <span class="card-text ml-2"><small class="text-muted">{{post.likes}} likes</small></span>
+      </div>
     </div>
-    <a  *ngIf="auth.isLoggedIn()" href="/addPost" class="float">
-            <i class="fa fa-plus my-float"></i>
-            </a>
+  </div>
+  <mat-paginator [length]="totalPosts" [pageSize]="postsPerPage" [pageSizeOptions]="pageSizeOptions"
+    (page)="onChangedPage($event)" *ngIf="postData.length > 0"></mat-paginator>
+  <p class="info-text mat-body-1" *ngIf="postData.length <= 0">No posts added yet!</p>
+  <a *ngIf="auth.isLoggedIn()" href="/addPost" class="float">
+    <i class="fa fa-plus my-float"></i>
+  </a>
 </div>

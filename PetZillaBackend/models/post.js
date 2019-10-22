@@ -22,6 +22,9 @@ const PostlistSchema = mongoose.Schema({
     },
     likedUserIDs: {
         type: Array
+    },
+    createdDate: {
+        type: Date
     }
 });
 
@@ -30,8 +33,13 @@ const PostList = module.exports = mongoose.model('PostList', PostlistSchema );
 
 
 //BucketList.find() returns all the lists
-module.exports.getAllLists = (callback) => {
-	PostList.find(callback);
+module.exports.getAllLists = (callback , pageSize , page ) => {
+    PostList.find(callback).skip(pageSize * (page - 1)).limit(pageSize);
+}
+
+//Posts count
+module.exports.postsCount = () => {
+   return PostList.count();
 }
 
 //newList.save is used to insert the document into MongoDB
