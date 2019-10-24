@@ -55,6 +55,11 @@ app.use('/ourmedia',bucketlist);
 var routesApi = require('./routes/authRoutes');
 app.use('/auth', routesApi);
 
+//RescueController
+const rescueCtrl = require('./controllers/rescueContrller');
+app.use('/rescue', rescueCtrl);
+
+
 app.get('/', (req,res) => {
     res.send("Invalid page");
 })

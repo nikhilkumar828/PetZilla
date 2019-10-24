@@ -8,11 +8,12 @@ export interface UserDetails {
 
 export interface TokenResponse {
     token: string;
-    user : object
+    user: object;
   }
 
 export interface TokenPayload {
     email: string;
     password: string;
     name?: string;
+    role?: string;
   }

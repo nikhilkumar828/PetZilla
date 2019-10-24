@@ -11,6 +11,7 @@ import { OurMediaModule } from './components/our-media/our-media.module';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import {MatCardModule} from '@angular/material/card';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RescueModule } from './components/rescue/rescue.module';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserModule,
+    RescueModule,
     AppRoutingModule,
     OurMediaModule,
     BrowserAnimationsModule

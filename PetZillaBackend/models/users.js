@@ -12,6 +12,12 @@ var userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  role: {
+    type: String,
+    required: true
+  },
+  isVerified: { type: Boolean, default: false },
+  code: String,
   hash: String,
   salt: String
 });

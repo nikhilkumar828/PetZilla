@@ -13,14 +13,15 @@ export class RegistrationComponent implements OnInit {
   credentials: TokenPayload = {
     email: '',
     name: '',
-    password: ''
+    password: '',
+    role: 'User'
   };
-  
+
   constructor(private auth: AuthenticationService, private router: Router) {}
 
   ngOnInit() {
   }
-  
+
   register() {
     this.auth.register(this.credentials).subscribe(() => {
       this.router.navigateByUrl('/login');

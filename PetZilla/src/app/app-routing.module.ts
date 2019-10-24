@@ -24,6 +24,10 @@ const routes: Routes = [
     path: 'infotab',
     loadChildren: './components/info-tab/info-tab.module#InfoTabModule'
   },
+  {
+    path: 'rescue',
+    loadChildren: './components/rescue/rescue.module#RescueModule'
+  }
 ];
 
 @NgModule({
