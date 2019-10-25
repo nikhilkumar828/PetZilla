@@ -4,14 +4,16 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuardService } from 'src/app/guards/auth-guard.service';
 import { RegistrationComponent } from './registration/registration.component';
 import { ProfileComponent } from './profile/profile.component';
+import { EmailVerificationComponent } from './email-verification/email-verification.component';
 
 
 const routes: Routes = [
   // { path: '', component: HomeComponent },
-  { path: '', component: LoginComponent },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegistrationComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'confirmation', component: EmailVerificationComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] }
 ];
 

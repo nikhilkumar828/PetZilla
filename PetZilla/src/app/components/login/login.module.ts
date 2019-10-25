@@ -8,10 +8,11 @@ import { ProfileComponent } from './profile/profile.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
+import { EmailVerificationComponent } from './email-verification/email-verification.component';
 
 
 @NgModule({
-  declarations: [RegistrationComponent, LoginComponent, ProfileComponent],
+  declarations: [RegistrationComponent, LoginComponent, ProfileComponent, EmailVerificationComponent],
   imports: [
     FormsModule,
     ReactiveFormsModule,

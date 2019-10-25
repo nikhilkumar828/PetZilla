@@ -55,7 +55,7 @@ export class AuthenticationService {
   }
 
 
-  private request(method: 'post'|'get', type: 'login'|'register'|'profile', user?: TokenPayload): Observable<any> {
+  private request(method: 'post'|'get', type: 'login'|'register'|'profile'|'confirm', user?: TokenPayload): Observable<any> {
     let base;
     if (method === 'post') {
       base = this.http.post(`http://localhost:3000/auth/${type}`, user);
@@ -86,5 +86,11 @@ export class AuthenticationService {
   public profile(): Observable<any> {
     return this.request('get', 'profile');
   }
+
+  public confirmMail(userObj): Observable<any> {
+    return this.request('post', 'confirm', userObj);
+  }
+
+
 
 }

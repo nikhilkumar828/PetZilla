@@ -36,44 +36,80 @@ module.exports.register = function(req, res) {
     user.code = randomString.generate(5);
     user.setPassword(req.body.password);
 
-  //   user.save(async function (err) {
-  //       if (err) { return res.status(500).send({ msg: err.message }); }
+    user.save(async function (err) {
+        if (err) { return res.status(500).send({ msg: err.message }); }
  
-  //       // Create a verification token for this user
-  //       var token = user.generateJwt();
+        // Create a verification token for this user
+        var token = user.generateJwt();
  
         
-  //           // Send the email
-  //           var transporter = nodemailer.createTransport({
-  //             service: 'gmail',
-  //               auth: {
-  //                     user: 'epamlibrarian@gmail.com',
-  //                     pass: 'l1brari@n'
-  //                 }
-  //            });
-  //           var mailOptions = { from: 'epamlibrarian@gmail.com', to: user.email, subject: 'Account Verification ', text: 'Hello,\n\n' + 'Please verify your account by clicking the link: \nhttp:\/\/' + req.get("host") + '\/confirmation\/' + user.code + '\n', };
-  //           // console.log(user.email);
-  //           let info = await transporter.sendMail(mailOptions, function (err) {
-  //             console.log('sending');
-  //               if (err) { return res.status(500).send({ msg: err.message }); }
-  //               res.status(200).send('A verification email has been sent to ' + user.email + '.');
-  //           });
-  //           console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-  //   });
-  // });
-
-
-  user.save(function(err) {
-    var token;
-    token = user.generateJwt();
-    res.status(200);
-    res.json({
-      "token" : token
+            // Send the email
+            var transporter = nodemailer.createTransport({
+              service: 'gmail',
+                auth: {
+                      user: 'petzilla0@gmail.com',
+                      pass: 'petZilla@007'
+                  }
+             });
+            let host = req.headers.host;
+            let url = `http://localhost:4200/login/confirmation/?userId=${user.email}&code=${user.code}`;
+            var mailOptions = { from: 'petZilla0@gmail.com', to: user.email, subject: 'Account Verification ', text: 'Hello,\n\n' + 'Please verify your account by clicking the link: \n' + url + '\nRegards,\nPetZilla.', };
+            console.log(mailOptions.text);
+            let info = await transporter.sendMail(mailOptions, function (err) {
+              console.log('sending');
+                if (err) { return res.status(500).send({ msg: err.message }); }
+                res.status(200).send('A verification email has been sent to ' + user.email + '.');
+            });
     });
   });
-});
+
+
+//   user.save(function(err) {
+//     var token;
+//     token = user.generateJwt();
+//     res.status(200);
+//     res.json({
+//       "token" : token
+//     });
+//   });
+// });
 
 }
+
+module.exports.confirmMail = function(req, res) {
+
+  const mailId = req.body.userMail;
+  const code = req.body.code;
+
+  User.findOne({ email: mailId }, function (err, user) {
+    if(user){
+      if(user.code === code){
+        user.code = '';
+        user.isVerified = true;
+        res.status(200);
+        res.json({
+          "msg" : 'Verified Succesfully',
+          status : user.isVerified
+        });
+      }
+      else{
+        res.status(501);
+        res.json({
+          "msg" : 'Code Error',
+          status : user.isVerified
+        });
+      }
+    } else {
+      res.status(501);
+        res.json({
+          "msg" : 'No user with specified ID',
+          status : false
+        });
+    }
+  });
+
+  
+};
 
 module.exports.login = function(req, res) {
 
