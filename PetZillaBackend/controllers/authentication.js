@@ -54,9 +54,8 @@ module.exports.register = function(req, res) {
             let host = req.headers.host;
             let url = `http://localhost:4200/login/confirmation/?userId=${user.email}&code=${user.code}`;
             var mailOptions = { from: 'petZilla0@gmail.com', to: user.email, subject: 'Account Verification ', text: 'Hello,\n\n' + 'Please verify your account by clicking the link: \n' + url + '\nRegards,\nPetZilla.', };
-            console.log(mailOptions.text);
+            // console.log(mailOptions.text);
             let info = await transporter.sendMail(mailOptions, function (err) {
-              console.log('sending');
                 if (err) { return res.status(500).send({ msg: err.message }); }
                 res.status(200).send('A verification email has been sent to ' + user.email + '.');
             });
@@ -84,13 +83,26 @@ module.exports.confirmMail = function(req, res) {
   User.findOne({ email: mailId }, function (err, user) {
     if(user){
       if(user.code === code){
-        user.code = '';
+        // user.code = '';
         user.isVerified = true;
-        res.status(200);
-        res.json({
-          "msg" : 'Verified Succesfully',
-          status : user.isVerified
+        let query = {email: mailId};
+        let updatedCreds = {
+          code: '',
+          isVerified: true
+        }
+	      User.updateOne(query, updatedCreds , function(err, doc){
+          console.log('In update');
+          if (err) return res.status(500).send({error: err });
+          return res.status(200).send({
+            "msg" : 'Verified Succesfully',
+            status : user.isVerified
+          });
         });
+        // res.status(200);
+        // res.json({
+        //   "msg" : 'Verified Succesfully',
+        //   status : user.isVerified
+        // });
       }
       else{
         res.status(501);
@@ -131,16 +143,25 @@ module.exports.login = function(req, res) {
 
     // If a user is found
     if(user){
+      if(user.isVerified === true){
       token = user.generateJwt();
       res.status(200);
       res.json({
         "token" : token,
+        "status" : true,
         "user" : {
           name: user.name,
           id: user.id,
           role: user.role
         }
       });
+    } else {
+      res.status(501);
+      res.json({
+        "message" : 'Please verify your mail ID',
+        "status" : false
+      });
+    }
     } else {
       // If user is not found
       res.status(401).json(info);

@@ -5,4 +5,5 @@ export interface Post {
     image: File;
     likedByMe?: boolean;
     likes?: number;
+    mobileNo?: string;
 }

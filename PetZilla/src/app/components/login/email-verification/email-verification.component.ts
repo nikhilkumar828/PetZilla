@@ -20,6 +20,7 @@ export class EmailVerificationComponent implements OnInit {
         this.userId = params.userId;
         this.code = params.code;
         this.verifyMail(this.userId, this.code);
+        console.log('verify');
       } else {
         alert('Please contact administrator.');
       }
@@ -34,6 +35,7 @@ export class EmailVerificationComponent implements OnInit {
 
     this.authService.confirmMail(verifyObj).subscribe((obj) => {
       console.log(obj);
+      alert(obj.msg);
       this.router.navigateByUrl('/login');
     }, (err) => {
       console.error(err);

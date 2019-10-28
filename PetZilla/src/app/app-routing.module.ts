@@ -4,21 +4,17 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'login',
-    loadChildren: './components/login/login.module#LoginModule'
-  },
-  {
     path: '',
     redirectTo: 'ourmedia',
     pathMatch: 'full'
   },
   {
-    path: 'dashboard',
-    loadChildren: './components/dashboard/dashboard.module#DashboardModule'
+    path: 'login',
+    loadChildren: './components/login/login.module#LoginModule'
   },
   {
-    path: 'ourmedia',
-    loadChildren: './components/our-media/our-media.module#OurMediaModule'
+    path: 'dashboard',
+    loadChildren: './components/dashboard/dashboard.module#DashboardModule'
   },
   {
     path: 'infotab',
@@ -27,6 +23,10 @@ const routes: Routes = [
   {
     path: 'rescue',
     loadChildren: './components/rescue/rescue.module#RescueModule'
+  },
+  {
+    path: 'ourmedia',
+    loadChildren: './components/our-media/our-media.module#OurMediaModule'
   }
 ];
 

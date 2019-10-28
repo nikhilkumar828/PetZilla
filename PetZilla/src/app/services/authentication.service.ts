@@ -14,9 +14,11 @@ export class AuthenticationService {
   constructor(private http: HttpClient, private router: Router) {}
 
   private saveToken(data: TokenResponse): void {
+    if (data.token && data.user) {
     localStorage.setItem('mean-token', data.token);
     localStorage.setItem('user', JSON.stringify(data.user));
     this.token = data.token;
+  }
   }
 
   private getToken(): string {
@@ -66,6 +68,7 @@ export class AuthenticationService {
     const request = base.pipe(
       map((data: TokenResponse) => {
         if (data) {
+          console.log(data);
           this.saveToken(data);
         }
         return data;

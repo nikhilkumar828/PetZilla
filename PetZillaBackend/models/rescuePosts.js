@@ -3,10 +3,10 @@
 const mongoose = require('mongoose');
 
 //Define BucketlistSchema with title, description and category
-const PostlistSchema = mongoose.Schema({
+const RescuePostSchema = mongoose.Schema({
     title: {
         type: String,
-        required: true
+        required: false
     },
     description: String,
     imgSrc: {
@@ -16,20 +16,26 @@ const PostlistSchema = mongoose.Schema({
         type: String,
         require: true
     },
-    likes: { 
+    followers: { 
         type: Number,
         default: 0
     },
-    likedUserIDs: {
+    follwedIDs: {
         type: Array
     },
     createdDate: {
         type: Date
+    },
+    documents: {
+        type: Array
+    },
+    mobileNo: {
+        type: Number
     }
 });
 
 //Create a model using mongoose.model and export it
-const PostList = module.exports = mongoose.model('PostList', PostlistSchema );
+const PostList = module.exports = mongoose.model('RescuePost', RescuePostSchema );
 
 
 //BucketList.find() returns all the lists
@@ -55,13 +61,13 @@ module.exports.deleteListById = (id, callback) => {
 }
 
 //We pass on an id and remove it from DB using Bucketlist.remove()
-module.exports.likePostById = (postId, userId, callback) => {
+module.exports.followPostById = (postId, userId, callback) => {
 	let query = {_id: postId};
-	PostList.findByIdAndUpdate(query, { $inc: { likes: 1 } , $push: { likedUserIDs : userId} }, callback);
+	PostList.findByIdAndUpdate(query, { $inc: { followers: 1 } , $push: { follwedIDs : userId} }, callback);
 }
 
 //We pass on an id and remove it from DB using Bucketlist.remove()
-module.exports.disLikePostById = (postId, userId, callback) => {
+module.exports.unFollowPostById = (postId, userId, callback) => {
 	let query = {_id: postId};
-	PostList.findByIdAndUpdate(query, { $inc: { likes: -1 } ,  $pull: { likedUserIDs : userId} }, callback);
+	PostList.findByIdAndUpdate(query, { $inc: { followers: -1 } ,  $pull: { follwedIDs : userId} }, callback);
 }

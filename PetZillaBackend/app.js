@@ -41,6 +41,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({limit: '50mb',extended:true}));
 app.use(bodyParser.json({limit: '50mb', extended: true}));
 app.use("/images", express.static(path.join("images")));
+app.use("/rescueImages", express.static(path.join("rescueImages")));
 
 /*express.static is a built in middleware function to serve static files.
  We are telling express server public folder is the place to look for the static files
@@ -56,7 +57,7 @@ var routesApi = require('./routes/authRoutes');
 app.use('/auth', routesApi);
 
 //RescueController
-const rescueCtrl = require('./controllers/rescueContrller');
+const rescueCtrl = require('./controllers/rescueController');
 app.use('/rescue', rescueCtrl);
 
 

@@ -24,8 +24,8 @@ import { RescueModule } from './components/rescue/rescue.module';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserModule,
-    RescueModule,
     AppRoutingModule,
+    RescueModule,
     OurMediaModule,
     BrowserAnimationsModule
   ],

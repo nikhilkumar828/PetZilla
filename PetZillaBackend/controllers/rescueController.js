@@ -4,7 +4,7 @@ const router = express.Router();
 
 const multer = require("multer");
 
-const postlist = require('../models/post');
+const postlist = require('../models/rescuePosts');
 
 
 const MIME_TYPE_MAP = {
@@ -35,15 +35,6 @@ const MIME_TYPE_MAP = {
 
 //GET HTTP method to /postlist
 router.get('/',(req,res) => {
-    // postlist.getAllLists((err, lists)=> {
-    //     if(err) {
-    //         res.json({success:false, message: `Failed to load all lists. Error: ${err}`});
-    //     }
-    //     else {
-    //         res.write(JSON.stringify({success: true, lists:lists },null,2));
-    //         res.end();
-    // }
-    // } , +req.query.pagesize , +req.query.page);
     const pageSize = +req.query.pagesize;
     const currentPage = +req.query.page;
     const postQuery = postlist.find().sort({createdDate : -1});
@@ -79,11 +70,12 @@ router.post('/',
             (req,res,next) => {
                 const url = req.protocol + "://" + req.get("host");
     let newPost = new postlist({
-        title: req.body.title,
         description: req.body.description,
-        imgSrc: url + "/images/" + req.file.filename,
+        imgSrc: url + "/rescueImages/" + req.file.filename,
         author: req.body.author,
-        createdDate: new Date()
+        createdDate: new Date(),
+        mobileNo: parseInt(req.body.mobileNo),
+        authorId: req.body.mailId
     });
     postlist.addList(newPost,(err, list) => {
         if(err) {
@@ -114,7 +106,7 @@ router.delete('/:id', (req,res,next)=> {
     })
 });
 
-router.put('/like/:id', (req,res,next)=> {
+router.put('/follow/:id', (req,res,next)=> {
     //access the parameter which is the id of the item to be deleted
       let id = req.params.id;
       let boolean = req.body.value;
