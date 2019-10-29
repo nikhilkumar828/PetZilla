@@ -47,4 +47,16 @@ export class RescueDashboardComponent implements OnInit {
       return false;
     }
   }
+
+  followPost(postId: string , value: boolean, index: number) {
+    console.log(value);
+    if (value) {
+    this.postData[index].followedByMe = true;
+    this.postData[index].followers++;
+    } else {
+      this.postData[index].followedByMe = false;
+      this.postData[index].followers--;
+    }
+    this.postService.followPost(postId, value);
+  }
 }

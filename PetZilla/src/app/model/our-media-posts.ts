@@ -4,6 +4,8 @@ export interface Post {
     description: string;
     image: File;
     likedByMe?: boolean;
+    followedByMe?: boolean;
     likes?: number;
+    followers?: number;
     mobileNo?: string;
 }

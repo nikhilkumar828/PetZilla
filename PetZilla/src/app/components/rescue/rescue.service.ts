@@ -26,7 +26,7 @@ export class RescueService {
           posts: res.lists.map(data => {
           return {
             ...data,
-            followedByMe: this.isFollowedByMe(data.likedUserIDs)
+            followedByMe: this.isFollowedByMe(data.follwedIDs)
           };
          }),
          totalPosts: res.maxPosts
@@ -72,7 +72,7 @@ export class RescueService {
       .subscribe(res => console.log(JSON.stringify(res)));
   }
 
-  public likePost(postId: string, val: boolean) {
+  public followPost(postId: string, val: boolean) {
     const URI = `${this.serverApi}/rescue/follow/${postId}`;
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');

@@ -20,7 +20,7 @@ const MIME_TYPE_MAP = {
       if (isValid) {
         error = null;
       }
-      cb(error, "images");
+      cb(error, "rescueImages");
     },
     filename: (req, file, cb) => {
       const name = file.originalname
@@ -113,12 +113,12 @@ router.put('/follow/:id', (req,res,next)=> {
       const userId = req.body.userId;
     //Call the model method deleteListById
     if(boolean){
-        postlist.likePostById(id,userId,(err,list) => {
+        postlist.followPostById(id,userId,(err,list) => {
             if(err) {
-                res.json({success:false, message: `Failed to like the post. Error: ${err}`});
+                res.json({success:false, message: `Failed to follow the post. Error: ${err}`});
             }
             else if(list) {
-                res.json({success:true, message: "Liked successfully"});
+                res.json({success:true, message: "followed successfully"});
             }
             else
                 res.json({success:false});
@@ -126,12 +126,12 @@ router.put('/follow/:id', (req,res,next)=> {
 
     }
     else {
-        postlist.disLikePostById(id,userId,(err,list) => {
+        postlist.unFollowPostById(id,userId,(err,list) => {
             if(err) {
-                res.json({success:false, message: `Failed to dislike the post. Error: ${err}`});
+                res.json({success:false, message: `Failed to follow the post. Error: ${err}`});
             }
             else if(list) {
-                res.json({success:true, message: "Disliked successfully"});
+                res.json({success:true, message: "unFollowed successfully"});
             }
             else
                 res.json({success:false});

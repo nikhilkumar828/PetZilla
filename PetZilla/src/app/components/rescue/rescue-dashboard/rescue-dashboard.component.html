@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
     <div class=" row">
       <div *ngFor="let post of postData;let i = index" class="card width margin">
         <div class="card-header">
@@ -7,15 +7,70 @@
         <img [src]=post.imgSrc class="card-img-top" alt="...">
         <div class="card-body">
           <p class="card-text">{{post.description}}</p>
-          <span *ngIf="post.likedByMe else notLiked"><i (click)="likePost(post._id,false,i)"
+          <span *ngIf="post.followedByMe else notLiked"><i (click)="followPost(post._id,false,i)"
               class="fa fa-heart"></i></span>
-          <ng-template #notLiked><i (click)="likePost(post._id,true,i)" class="fa fa-heart-o"></i></ng-template>
-          <span class="card-text ml-2"><small class="text-muted">{{post.likes}} likes</small></span>
+          <ng-template #notLiked><i (click)="followPost(post._id,true,i)" class="fa fa-heart-o"></i></ng-template>
+          <span class="card-text ml-2"><small class="text-muted">{{post.followers}} likes</small></span>
         </div>
       </div>
     </div>
     <mat-paginator [length]="totalPosts" [pageSize]="postsPerPage" [pageSizeOptions]="pageSizeOptions"
       (page)="onChangedPage($event)" *ngIf="postData.length > 0"></mat-paginator>
+    <p class="info-text mat-body-1" *ngIf="postData.length <= 0">No posts added yet!</p>
+    <a *ngIf="isRoleRescue()" routerLink="/rescue/addPost" class="float">
+      <i class="fa fa-plus my-float"></i>
+    </a>
+  </div> -->
+
+  <!--  -->
+  <div class="container">
+    <h2 class="text-center text-color">Rescue Posts</h2>
+    <div *ngFor="let post of postData;let i = index" class="row">
+      <div class="card col-12 col-md-12 col-lg-8 col-xl-10 ">
+        <div class="card-body ">
+          <div class="row align-items-center h-100">
+            <div class="col-sm-8 col-md-6 col-lg-2 col-xl-3 align-self-center">
+                    <img [src]=post.imgSrc class="rounded border border-dark card-img-top imgSize" alt="...">
+            </div>
+            <div class="col-lg-10 col-xl-9 description">
+              <!-- <h6 class="border-bottom border-dark title">{{books.title}}</h6> -->
+              <p class="details">{{post.description}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card col-12 col-md-12 col-lg-3 col-xl-2 padding-0">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item text-black-50 border-0 list">
+            Followers 
+            <p class="text-dark">{{post.followers}}</p>
+          </li>
+          <li class="list-group-item text-black-50 border-0 list">
+            Mobile No. <p class="text-dark">{{post.mobileNo}}</p>
+          </li>
+          <li class="list-group-item text-black-50 border-0 list">
+            Created Date<p class="text-dark">{{post.createdDate | date}}</p>
+          </li>
+          <li class="list-group-item text-black-50 border-0 list">
+            Status<p class="text-dark">
+              Active</p>
+          </li>
+          <!-- <li class="list-group-item text-black-50 border-0 list">
+            {{reservation.RETURN_DATE + reservation.SPACE}}<p class="text-dark">
+              {{getReturnDate(books.rentedBy[books.currentUserIndex].startDate , books.rentedBy[books.currentUserIndex].daysToRent) | date}}
+            </p>
+          </li> -->
+        </ul>
+        <div>
+                <div *ngIf="post.followedByMe else notLiked"><button (click)="followPost(post._id,false,i)"
+                    class="btn right-margin bg-dark text-white w-100">UnFollow</button></div>
+                <ng-template #notLiked><button (click)="followPost(post._id,true,i)"
+                    class="btn right-margin bg-dark text-white w-100">Follow</button></ng-template>
+          
+        </div>
+      </div>
+      <br>
+    </div>
     <p class="info-text mat-body-1" *ngIf="postData.length <= 0">No posts added yet!</p>
     <a *ngIf="isRoleRescue()" routerLink="/rescue/addPost" class="float">
       <i class="fa fa-plus my-float"></i>
