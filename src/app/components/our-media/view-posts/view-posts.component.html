@@ -1,0 +1,55 @@
+<!-- <section id="team" class="pb-5">
+        <div class="container">
+            <h5 class="section-title h1">POSTS</h5>
+            <div class="row">
+<div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let post of postData">
+        <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+            <div class="mainflip">
+                <div class="frontside">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <p><img class=" img-fluid" src={{post.imgSrc}} alt="card image"></p>
+                            <h4 class="card-title">{{post.title}}</h4>
+                            <p class="card-text">{{post.description}}</p>
+                            <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="backside">
+                    <div class="card">
+                        <div class="card-body text-center mt-4">
+                            <h4 class="card-title">Sunlimetech</h4>
+                            <p class="card-text">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</section> -->
+
+<div class="container">
+  <div class=" row">
+    <div *ngFor="let post of postData;let i = index" class="card width margin">
+      <div class="card-header">
+        {{post.author}}
+      </div>
+      <img [src]=post.imgSrc class="card-img-top" alt="...">
+      <div class="card-body">
+        <p class="card-text">{{post.description}}</p>
+        <span *ngIf="post.likedByMe else notLiked"><i (click)="likePost(post._id,false,i)"
+            class="fa fa-heart"></i></span>
+        <ng-template #notLiked><i (click)="likePost(post._id,true,i)" class="fa fa-heart-o"></i></ng-template>
+        <span class="card-text ml-2"><small class="text-muted">{{post.likes}} likes</small></span>
+      </div>
+    </div>
+  </div>
+  <mat-paginator [length]="totalPosts" [pageSize]="postsPerPage" [pageSizeOptions]="pageSizeOptions"
+    (page)="onChangedPage($event)" *ngIf="postData.length > 0"></mat-paginator>
+  <p class="info-text mat-body-1" *ngIf="postData.length <= 0">No posts added yet!</p>
+  <a *ngIf="auth.isLoggedIn()" href="/ourmedia/addPost" class="float">
+    <i class="fa fa-plus my-float"></i>
+  </a>
+</div>

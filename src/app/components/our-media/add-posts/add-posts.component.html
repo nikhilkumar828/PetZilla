@@ -1,0 +1,22 @@
+<form [formGroup]="postForm" (ngSubmit)="onSubmit()" class="form-group mt-10 container">
+
+  <br><br>
+  <input class="form-control" type="file" name="file" accept="image/*"
+  (change)="handleInputChange($event)">
+  <br><br>  
+        
+      <img *ngIf='imageSrc'
+        [src]="imageSrc" class="img"/>
+        <br><br>
+        
+        <label>
+          Content:
+        </label>
+          <input type="text" formControlName="description" class="form-control">
+          <br>
+      
+        <button type="submit" [disabled]="!postForm.valid" class="btn">Submit</button> 
+        | 
+        <button (click)="onCancel()" class="btn">Cancel</button>
+      
+      </form>
