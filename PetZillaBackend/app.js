@@ -27,8 +27,9 @@ const configAuth = require('./config/passport');
 const app = express();
 
 //Connect mongoose to our database
-mongoose.connect(config.database);
-mongoose.connect(configAuth.database);
+mongoose.connect(config.database,{ useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false })
+.then(() => console.log('MongoDB Connected...'))
+  .catch(err => console.log(err));
 
 
 //Declaring Port

@@ -7,7 +7,7 @@ import { AuthGuardService } from 'src/app/guards/auth-guard.service';
 
 const routes: Routes = [
   { path: '', component: ViewPostsComponent },
-  { path: 'addPost', component: AddPostsComponent, canActivate: [AuthGuardService] }
+  { path: 'ourmedia/addPost', component: AddPostsComponent, canActivate: [AuthGuardService] }
 ];
 
 @NgModule({

@@ -28,5 +28,5 @@ passport.use(new LocalStrategy({
 ));
 
 module.exports = {
-    database: 'mongodb://localhost:27017/auth'
+  database: 'mongodb+srv://dbUser:dbuserPASS@cluster0-ntyvk.mongodb.net/test?retryWrites=true&w=majority'
 }

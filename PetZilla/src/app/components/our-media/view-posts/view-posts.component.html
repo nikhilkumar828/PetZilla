@@ -49,7 +49,7 @@
   <mat-paginator [length]="totalPosts" [pageSize]="postsPerPage" [pageSizeOptions]="pageSizeOptions"
     (page)="onChangedPage($event)" *ngIf="postData.length > 0"></mat-paginator>
   <p class="info-text mat-body-1" *ngIf="postData.length <= 0">No posts added yet!</p>
-  <a *ngIf="auth.isLoggedIn()" href="/addPost" class="float">
+  <a *ngIf="auth.isLoggedIn()" href="/ourmedia/addPost" class="float">
     <i class="fa fa-plus my-float"></i>
   </a>
 </div>
