@@ -13,7 +13,7 @@ export class PostsService {
 
   constructor(private http: HttpClient, private auth: AuthenticationService) { }
 
-  private serverApi = 'https://petzilla.herokuapp.com/';
+  private serverApi = 'https://petzilla.herokuapp.com';
 
   public getAllLists(postsPerPage: number, currentPage: number): Observable<{posts: Post[] , totalPosts: number}> {
 
