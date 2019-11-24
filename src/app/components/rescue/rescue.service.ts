@@ -11,7 +11,7 @@ export class RescueService {
 
   constructor(private http: HttpClient) { }
 
-  private serverApi = 'https://petzilla.herokuapp.com/';
+  private serverApi = 'https://petzilla.herokuapp.com/api';
 
   public getAllLists(postsPerPage: number, currentPage: number): Observable<{posts: Post[] , totalPosts: number}> {
 

@@ -60,9 +60,9 @@ export class AuthenticationService {
   private request(method: 'post'|'get', type: 'login'|'register'|'profile'|'confirm', user?: TokenPayload): Observable<any> {
     let base;
     if (method === 'post') {
-      base = this.http.post(`https://petzilla.herokuapp.com/auth/${type}`, user);
+      base = this.http.post(`https://petzilla.herokuapp.com/api/auth/${type}`, user);
     } else {
-      base = this.http.get(`https://petzilla.herokuapp.com/auth/${type}`, { headers: { Authorization: `Bearer ${this.getToken()}` }});
+      base = this.http.get(`https://petzilla.herokuapp.com/api/auth/${type}`, { headers: { Authorization: `Bearer ${this.getToken()}` }});
     }
 
     const request = base.pipe(

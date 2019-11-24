@@ -51,15 +51,15 @@ app.use(express.static(path.join(__dirname, 'dist/PetZilla')));
 
 
 //Routing all HTTP requests to /bucketlist to bucketlist controller
-app.use('/ourmedia',bucketlist);
+app.use('/api/ourmedia',bucketlist);
 
 //Login
 var routesApi = require('./PetZillaBackend/routes/authRoutes');
-app.use('/auth', routesApi);
+app.use('/api/auth', routesApi);
 
 //RescueController
 const rescueCtrl = require('./PetZillaBackend/controllers/rescueController');
-app.use('/rescue', rescueCtrl);
+app.use('/api/rescue', rescueCtrl);
 
 
 app.get('/*', (req, res) => {
