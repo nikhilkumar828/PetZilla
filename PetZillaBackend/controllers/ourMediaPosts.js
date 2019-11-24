@@ -34,7 +34,7 @@ const MIME_TYPE_MAP = {
 
 
 //GET HTTP method to /postlist
-router.get('/',(req,res) => {
+router.get('*',(req,res) => {
     // postlist.getAllLists((err, lists)=> {
     //     if(err) {
     //         res.json({success:false, message: `Failed to load all lists. Error: ${err}`});
