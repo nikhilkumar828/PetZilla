@@ -62,9 +62,11 @@ const rescueCtrl = require('./PetZillaBackend/controllers/rescueController');
 app.use('/rescue', rescueCtrl);
 
 
-app.get('/', (req,res) => {
-    res.send("Invalid page");
-})
+app.get('/*', (req, res) => {
+
+  res.sendFile(path.join(__dirname, './dist/index.html'));
+
+});
 
 //Listen to port 3000
 app.listen(process.env.PORT || port, () => {
