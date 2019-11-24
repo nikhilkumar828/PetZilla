@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 //Posts
-const bucketlist = require('./controllers/ourMediaPosts');
+const bucketlist = require('./PetZillaBackend/controllers/ourMediaPosts');
 
 
 
@@ -16,12 +16,12 @@ const bucketlist = require('./controllers/ourMediaPosts');
 var passport = require('passport');
 
 // [SH] Bring in the data model
-require('./models/users');
+require('./PetZillaBackend/models/users');
 
 // Connect mongoose to our database
-const config = require('./config/database');
+const config = require('./PetZillaBackend/config/database');
 // [SH] Bring in the Passport config after model is defined
-const configAuth = require('./config/passport');
+const configAuth = require('./PetZillaBackend/config/passport');
 
 //Initialize our app variable
 const app = express();
@@ -41,8 +41,8 @@ app.use(cors());
 //Middleware for bodyparsing using both json and urlencoding
 app.use(bodyParser.urlencoded({limit: '50mb',extended:true}));
 app.use(bodyParser.json({limit: '50mb', extended: true}));
-app.use("/images", express.static(path.join("images")));
-app.use("/rescueImages", express.static(path.join("rescueImages")));
+app.use("/images", express.static(path.join("./PetZillaBackend/images")));
+app.use("/rescueImages", express.static(path.join("./PetZillaBackend/rescueImages")));
 
 /*express.static is a built in middleware function to serve static files.
  We are telling express server public folder is the place to look for the static files
@@ -54,11 +54,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/ourmedia',bucketlist);
 
 //Login
-var routesApi = require('./routes/authRoutes');
+var routesApi = require('./PetZillaBackend/routes/authRoutes');
 app.use('/auth', routesApi);
 
 //RescueController
-const rescueCtrl = require('./controllers/rescueController');
+const rescueCtrl = require('./PetZillaBackend/controllers/rescueController');
 app.use('/rescue', rescueCtrl);
 
 

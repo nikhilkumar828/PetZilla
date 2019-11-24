@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node app",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -26,7 +26,19 @@
     "font-awesome": "^4.7.0",
     "rxjs": "^6.4.0",
     "tslib": "^1.10.0",
-    "zone.js": "~0.9.1"
+    "zone.js": "~0.9.1",
+    "body-parser": "^1.19.0",
+    "cors": "~2.8.3",
+    "express": "^4.17.1",
+    "express-jwt": "^5.3.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^3.3.4",
+    "mongoose": "^5.7.12",
+    "multer": "^1.4.2",
+    "nodemailer": "^6.3.1",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "randomstring": "^1.1.5"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.802.1",
@@ -48,5 +60,7 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "typescript": "~3.5.3"
-  }
+  },
+  "author": "Nikhil",
+  "license": "ISC"
 }
