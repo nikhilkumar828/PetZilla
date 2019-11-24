@@ -62,9 +62,9 @@ const rescueCtrl = require('./PetZillaBackend/controllers/rescueController');
 app.use('/rescue', rescueCtrl);
 
 
-app.get('*', (req, res) => {
+app.get('/*', (req, res) => {
 
-  res.sendFile(path.join(__dirname, './dist/index.html'));
+  res.sendFile(path.join(__dirname, './dist/PetZilla/index.html'));
 
 });
 
