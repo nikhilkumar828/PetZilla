@@ -46,6 +46,8 @@ module.exports.register = function(req, res) {
             // Send the email
             var transporter = nodemailer.createTransport({
               host: 'smtp.gmail.com',
+              port: 465,
+              secure: true,
                 auth: {
                       user: 'petzilla0@gmail.com',
                       pass: 'petZilla@007'
