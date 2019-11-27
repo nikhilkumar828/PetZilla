@@ -45,14 +45,14 @@ module.exports.register = function(req, res) {
         
             // Send the email
             var transporter = nodemailer.createTransport({
-              service: 'gmail',
+              host: 'smtp.gmail.com',
                 auth: {
                       user: 'petzilla0@gmail.com',
                       pass: 'petZilla@007'
                   }
              });
             let host = req.headers.host;
-            let url = `http://localhost:4200/login/confirmation/?userId=${user.email}&code=${user.code}`;
+            let url = `https://petzilla.herokuapp.com/login/confirmation/?userId=${user.email}&code=${user.code}`;
             var mailOptions = { from: 'petZilla0@gmail.com', to: user.email, subject: 'Account Verification ', text: 'Hello,\n\n' + 'Please verify your account by clicking the link: \n' + url + '\nRegards,\nPetZilla.', };
             // console.log(mailOptions.text);
             let info = await transporter.sendMail(mailOptions, function (err) {
