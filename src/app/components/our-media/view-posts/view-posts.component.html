@@ -32,12 +32,12 @@
 
 <div class="container">
   <div class="row">
-    <div *ngFor="let post of postData;let i = index" class="card width margin">
+    <div *ngFor="let post of postData;let i = index" class="col-md col-sm-12 col-11 card width margin">
       <div class="card-header">
         {{post.author}}
       </div>
       <div class="card-body align-self-center">
-      <img [src]=post.imgSrc class="card-img-top" style ="height: 300px" alt="...">
+      <img [src]=post.imgSrc class="card-img-top image" alt="...">
       </div>
       <div class="card-footer" >
         <p class="card-text">{{post.description}}</p>
