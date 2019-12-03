@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./info-dashboard.component.css']
 })
 export class InfoDashboardComponent implements OnInit {
-
+  loading:boolean = true
   constructor() { }
 
   ngOnInit() {
+    setInterval(() => {
+      this.loading = false
+    },2000)
   }
 
 }

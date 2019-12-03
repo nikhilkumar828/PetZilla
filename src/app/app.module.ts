@@ -14,14 +14,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RescueModule } from './components/rescue/rescue.module';
 import { AlertComponent } from './shared/alert/alert.component';
 import { PlaceholderDirective } from './shared/placeholder/placeholder.directive';
-
+import { NgxLoadingModule } from 'ngx-loading';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     AlertComponent,
-    PlaceholderDirective
+    PlaceholderDirective,
   ],
   imports: [
     FormsModule,
@@ -31,7 +31,8 @@ import { PlaceholderDirective } from './shared/placeholder/placeholder.directive
     AppRoutingModule,
     RescueModule,
     OurMediaModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxLoadingModule.forRoot({})
   ],
   providers: [],
   bootstrap: [AppComponent]
