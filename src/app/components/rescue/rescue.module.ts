@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule, MatPaginatorModule } from '@angular/material';
 import { AddRescuePostComponent } from './add-rescue-post/add-rescue-post.component';
+import { NgxLoadingModule } from 'ngx-loading';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { AddRescuePostComponent } from './add-rescue-post/add-rescue-post.compon
     CommonModule,
     MatCardModule,
     MatPaginatorModule,
-    RescueRoutingModule
+    RescueRoutingModule,
+    NgxLoadingModule.forRoot({})
   ]
 })
 export class RescueModule { }

@@ -10,6 +10,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import {MatCardModule} from '@angular/material/card';
 import {MatPaginatorModule} from '@angular/material';
+import { NgxLoadingModule } from "ngx-loading";
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import {MatPaginatorModule} from '@angular/material';
     CommonModule,
     MatCardModule,
     MatPaginatorModule,
-    OurMediaRoutingModule
+    OurMediaRoutingModule,
+    NgxLoadingModule.forRoot({})
   ]
 })
 export class OurMediaModule { }

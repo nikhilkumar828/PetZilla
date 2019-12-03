@@ -1,5 +1,6 @@
 .width {
 	width: 45%;
+	padding: 0
 }
 
 .margin {
@@ -21,5 +22,9 @@
 
 .my-float{
 	margin-top:22px;
+}
+
+.image{
+	height: 315px
 }
 

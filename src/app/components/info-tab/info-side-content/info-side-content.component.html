@@ -1,9 +1,7 @@
-<p>info-side-content works!</p>
-
 <div class="container">
-    <div>
-        <h3>Organization Name</h3>
-        <p>address</p>
-        <p>Mobile No</p>
+    <div class="card" *ngFor="let detail of details">
+            <h3 class="">{{detail.name}}</h3>
+            <p class="">Address : {{detail.address}}</p>
+            <p class="">Mobile : {{detail.number}}</p>
     </div>
 </div>

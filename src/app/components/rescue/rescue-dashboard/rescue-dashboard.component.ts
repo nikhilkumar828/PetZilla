@@ -13,7 +13,7 @@ export class RescueDashboardComponent implements OnInit {
 
   postData: Post[] = [];
   isLiked = false;
-
+  loading:boolean = true
   totalPosts = 0;
   postsPerPage = 2;
   currentPage = 1;
@@ -26,6 +26,7 @@ export class RescueDashboardComponent implements OnInit {
       console.log(data);
       this.postData = data.posts;
       this.totalPosts = data.totalPosts;
+      this.loading = false
     });
   }
 

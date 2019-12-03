@@ -5,25 +5,25 @@
     </button>
     <div id="navb" class="navbar-collapse collapse hide">
       <ul class="navbar-nav">
-        <li class="nav-item">
+        <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
           <a class="nav-link" routerLink="/ourmedia" routerLinkActive="active">Home</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
           <a class="nav-link" routerLink="/infotab" routerLinkActive="active">Info</a>
         </li>
-        <li *ngIf="auth.isLoggedIn()" class="nav-item">
+        <li *ngIf="auth.isLoggedIn()" class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
           <a class="nav-link" routerLink="/rescue" routerLinkActive="active">Rescue</a>
         </li>
       </ul>
   
       <ul class="nav navbar-nav ml-auto">
-        <li *ngIf="!auth.isLoggedIn()" class="nav-item">
+        <li *ngIf="!auth.isLoggedIn()" class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
           <a class="nav-link" href="/login/register"><span class="fa fa-user"></span> Sign Up</a>
         </li>
-        <li *ngIf="!auth.isLoggedIn()" class="nav-item">
+        <li *ngIf="!auth.isLoggedIn()" class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
           <a class="nav-link" href="/login"><span class="fa fa-sign-in-alt"></span> Login</a>
         </li>
-        <li *ngIf="auth.isLoggedIn()" class="nav-item">
+        <li *ngIf="auth.isLoggedIn()" class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
             <a class="nav-link" href="/ourmedia" (click)="logOut()"><span class="fa fa-sign-in-alt"></span> LogOut</a>
           </li>
       </ul>
