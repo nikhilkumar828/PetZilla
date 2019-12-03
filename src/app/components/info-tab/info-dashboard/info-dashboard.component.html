@@ -1,13 +1,14 @@
 <div class="containerSpacing">
-        <div class="row">
-            <div class="main">
-          <div class="col-sm">
-              <p>List of all the informaion services goes here .</p>
-          </div>
-        </div>
-          <div class="col-sm">
-                <app-info-side-content></app-info-side-content>
-          </div>
-        </div>
-        <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
+  <div class="row">
+    <div class="col-sm-8 overflow-hidden">
+      <div class="list-group" *ngFor="let info of infoService">
+        <a class="list-group-item border-0" href="/infotab">{{info}}</a>
+      </div>
+    </div>
+    <div class="col-sm-4 overflow-auto">
+      <app-info-side-content></app-info-side-content>
+    </div>
+  </div>
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate">
+  </ngx-loading>
 </div>
