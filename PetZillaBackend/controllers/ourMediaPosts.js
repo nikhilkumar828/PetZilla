@@ -20,7 +20,7 @@ const MIME_TYPE_MAP = {
       if (isValid) {
         error = null;
       }
-      cb(error, "./images");
+      cb(error, "./PetZillaBackend/images");
     },
     filename: (req, file, cb) => {
       const name = file.originalname
