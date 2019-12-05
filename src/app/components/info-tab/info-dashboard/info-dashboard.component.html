@@ -1,14 +1,22 @@
-<div class="containerSpacing">
-  <div class="row">
-    <div class="col-sm-8 overflow-hidden">
-      <div class="list-group" *ngFor="let info of infoService">
-        <a class="list-group-item border-0" href="/infotab">{{info}}</a>
-      </div>
-    </div>
-    <div class="col-sm-4 overflow-auto">
-      <app-info-side-content></app-info-side-content>
-    </div>
+<div class="col-md-3 col-xs-1 p-l-0 p-r-0 collapse in" style="padding : 0;" id="sidebar" #sideDiv>
+  <button type="button" class="close" (click)="onClose()">
+    <span style="color: white">×</span>
+  </button>
+  <h3>Services</h3>
+  <div class="list-group panel" *ngFor="let info of infoService">
+    <a href="/infotab" class="list-group-item collapsed" data-toggle="collapse" data-parent="#sidebar"
+      aria-expanded="false" #sidebar><span class="hidden-sm-down">{{info}}</span> </a>
   </div>
-  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }">
+</div>
+<div id="mySidenav" class="sidenav">
+  <a href="#sidebar" data-toggle="collapse" id="services" #sidenav (click)="onClick()">Services</a>
+</div>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }">
   </ngx-loading>
+
+
+<div class="row">
+  <div class="col">
+    <app-info-side-content></app-info-side-content>
+  </div>
 </div>
