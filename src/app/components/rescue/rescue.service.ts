@@ -67,7 +67,7 @@ export class RescueService {
     postData.append('mobileNo', post.mobileNo);
     postData.append('authorId', userId);
     // headers.append('Content-Type', 'application/json');
-    console.log(postData);
+    console.log('rescuePost', postData);
     return this.http.post(URI, postData)
       .subscribe(res => console.log(JSON.stringify(res)));
   }

@@ -5,8 +5,7 @@ const mongoose = require('mongoose');
 //Define BucketlistSchema with title, description and category
 const RescuePostSchema = mongoose.Schema({
     title: {
-        type: String,
-        required: false
+        type: String
     },
     description: String,
     imgSrc: {
@@ -31,7 +30,10 @@ const RescuePostSchema = mongoose.Schema({
     },
     mobileNo: {
         type: Number
-    }
+    },
+    authorId: {
+        type: String
+    },
 });
 
 //Create a model using mongoose.model and export it

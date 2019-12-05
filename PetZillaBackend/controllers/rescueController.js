@@ -75,7 +75,7 @@ router.post('/',
         author: req.body.author,
         createdDate: new Date(),
         mobileNo: parseInt(req.body.mobileNo),
-        // authorId: req.body.mailId
+        authorId: req.body.authorId
     });
     postlist.addList(newPost,(err, list) => {
         if(err) {
