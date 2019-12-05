@@ -1,7 +1,9 @@
-<div class="container">
-    <div class="card" *ngFor="let detail of details">
-            <h3 class="">{{detail.name}}</h3>
-            <p class="">Address : {{detail.address}}</p>
-            <p class="">Mobile : {{detail.number}}</p>
-    </div>
+<div class="container row">
+    <div class="card col-sm-4" *ngFor="let detail of details">
+            <div class="align-self-center">
+            <h3>{{detail.name}}</h3>
+            <p>Address : {{detail.address}}</p>
+            <p>Mobile : {{detail.number}}</p>
+            </div>
+        </div>
 </div>
