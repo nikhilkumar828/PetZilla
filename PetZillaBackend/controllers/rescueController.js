@@ -20,7 +20,7 @@ const MIME_TYPE_MAP = {
       if (isValid) {
         error = null;
       }
-      cb(error, "rescueImages");
+      cb(error, "./PetZillaBackend/rescueImages");
     },
     filename: (req, file, cb) => {
       const name = file.originalname
@@ -34,7 +34,7 @@ const MIME_TYPE_MAP = {
 
 
 //GET HTTP method to /postlist
-router.get('/',(req,res) => {
+router.get('*',(req,res) => {
     const pageSize = +req.query.pagesize;
     const currentPage = +req.query.page;
     const postQuery = postlist.find().sort({createdDate : -1});
