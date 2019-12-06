@@ -9,15 +9,11 @@
   </div>
 </div>
 <div id="mySidenav" class="sidenav">
-  <a href="#sidebar" data-toggle="collapse" id="services" #sidenav (click)="onClick()">Services</a>
+  <button href="#sidebar" data-toggle="collapse" id="services" #sidenav (click)="onClick()">S<br>e<br>r<br>v<br>i<br>c<br>e<br>s</button>
 </div>
 <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate">
 </ngx-loading>
 
 
-<div class="row">
-  <div class="col">
-    <app-info-side-content></app-info-side-content>
-  </div>
-</div>
+<app-info-side-content></app-info-side-content>
 
