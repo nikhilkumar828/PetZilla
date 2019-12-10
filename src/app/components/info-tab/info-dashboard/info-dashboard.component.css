@@ -1,7 +1,7 @@
 #sidebar{
   position: absolute;
   top:180px;
-  z-index:2
+  z-index:1
 }
 #sidebar h3{
   border-radius: 0;
@@ -28,21 +28,6 @@
 /* open state */
 #sidebar .list-group .list-group-item[aria-expanded="true"] {
   background-color: #222;
-}
-
-/* level 1*/
-#sidebar .list-group .collapse .list-group-item  {
-  padding-left: 20px;
-}
-
-/* level 2*/
-#sidebar .list-group .collapse > .collapse .list-group-item {
-  padding-left: 30px;
-}
-
-/* level 3*/
-#sidebar .list-group .collapse > .collapse > .collapse .list-group-item {
-  padding-left: 40px;
 }
 
 @media (max-width:48em) {
@@ -81,24 +66,21 @@
 
 }
 
-#mySidenav a {
-    position: absolute;
-    left: -90px;
+#mySidenav button {
+    position: fixed;
+    left : -10px;
     transition: 0.3s;
-    padding: 15px;
-    width: 100px;
+    padding: 10px;
+    width: 50px;
     text-decoration: none;
     font-size: 20px;
     color: white;
     border-radius: 0 5px 5px 0;
-    z-index:1
-    
+    z-index:1;
   }
-  
-  #mySidenav a:hover {
-    left: 0;
-  }
-  #services {
-    top: 250px;
+   #services {
+    top: 200px;
     background-color:#222;
   }
+
+  

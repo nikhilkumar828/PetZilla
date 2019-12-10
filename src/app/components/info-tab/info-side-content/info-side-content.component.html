@@ -1,9 +1,11 @@
 <div class="container row">
-    <div class="card col-sm-4" *ngFor="let detail of details">
+    <div class="col-sm-4" *ngFor="let detail of details">
+    <div class="card" >
             <div class="align-self-center">
             <h3>{{detail.name}}</h3>
             <p>Address : {{detail.address}}</p>
             <p>Mobile : {{detail.number}}</p>
             </div>
         </div>
+    </div>
 </div>
